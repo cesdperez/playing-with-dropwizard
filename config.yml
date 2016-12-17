@@ -2,3 +2,8 @@ logging:
   level: INFO
   loggers:
     com.cperez.dropwizard: DEBUG
+
+server:
+  rootPath: /api/*
+
+dateFormat: yyyy-MM-dd'T'HH:mmZ
