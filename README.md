@@ -1,5 +1,7 @@
 This project is based on this tutorial https://www.sitepoint.com/tutorial-getting-started-dropwizard/ then I made some other changes for playing around.
 
+I added [lombock](https://projectlombok.org/) so you will need the proper plugin for supporting it in your IDE.
+
 # Events
 
 How to start the Events application

@@ -20,7 +20,6 @@ public class EventsApplication extends Application<EventsConfiguration> {
 
     @Override
     public void initialize(final Bootstrap<EventsConfiguration> bootstrap) {
-        // TODO: application initialization
     }
 
     @Override
