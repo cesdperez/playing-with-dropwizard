@@ -4,6 +4,9 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class EventsApplication extends Application<EventsConfiguration> {
 
     public static void main(final String[] args) throws Exception {
@@ -21,9 +24,9 @@ public class EventsApplication extends Application<EventsConfiguration> {
     }
 
     @Override
-    public void run(final EventsConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
+    public void run(final EventsConfiguration configuration, final Environment environment) {
+        DateFormat eventDateFormat = new SimpleDateFormat(configuration.getDateFormat());
+        environment.getObjectMapper().setDateFormat(eventDateFormat);
     }
 
 }
