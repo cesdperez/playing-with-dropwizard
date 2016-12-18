@@ -49,6 +49,11 @@ public class DummyEventRepository implements EventRepository {
         return oldEvent;
     }
 
+    @Override
+    public void delete(Long id) {
+        events.removeIf(e -> e.getId() == id);
+    }
+
     private void initData() {
         String jsonDataSource = toString(DATA_SOURCE);
         events = parse(jsonDataSource);

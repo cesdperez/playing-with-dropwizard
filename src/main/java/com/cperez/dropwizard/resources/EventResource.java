@@ -5,6 +5,7 @@ import io.dropwizard.jersey.params.LongParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("events")
@@ -24,4 +25,8 @@ public interface EventResource {
     @PUT
     @Path("{id}")
     Event updateEvent(@PathParam("id") LongParam id, Event event);
+
+    @DELETE
+    @Path("{id}")
+    Response deleteEvent(@PathParam("id") LongParam id);
 }

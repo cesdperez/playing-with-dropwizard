@@ -5,6 +5,7 @@ import com.cperez.dropwizard.core.EventRepository;
 import io.dropwizard.jersey.params.LongParam;
 
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 public class EventResourceImpl implements EventResource {
@@ -37,5 +38,11 @@ public class EventResourceImpl implements EventResource {
         return eventRepository
                 .update(id.get(), event)
                 .orElseThrow(() -> new WebApplicationException("Event not found", 404));
+    }
+
+    @Override
+    public Response deleteEvent(LongParam id) {
+        eventRepository.delete(id.get());
+        return Response.ok().build();
     }
 }
