@@ -1,5 +1,7 @@
 package com.cperez.dropwizard;
 
+import com.cperez.dropwizard.core.DummyEventRepository;
+import com.cperez.dropwizard.core.EventRepository;
 import com.cperez.dropwizard.resources.EventResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -35,6 +37,8 @@ public class EventsApplication extends Application<EventsConfiguration> {
     }
 
     private void setupResources(Environment environment) {
-        environment.jersey().register(new EventResource());
+        EventRepository repository = new DummyEventRepository();
+        EventResource eventResource = new EventResource(repository);
+        environment.jersey().register(eventResource);
     }
 }

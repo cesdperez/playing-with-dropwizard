@@ -21,6 +21,11 @@ public class DummyEventRepository implements EventRepository {
         initData();
     }
 
+    @Override
+    public List<Event> findAll() {
+        return events;
+    }
+
     private void initData() {
         String jsonDataSource = toString(DATA_SOURCE);
         events = parse(jsonDataSource);
