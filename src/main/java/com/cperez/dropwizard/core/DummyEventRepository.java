@@ -8,6 +8,7 @@ import com.google.common.io.Resources;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 
 import static com.google.common.base.Charsets.UTF_8;
 
@@ -24,6 +25,13 @@ public class DummyEventRepository implements EventRepository {
     @Override
     public List<Event> findAll() {
         return events;
+    }
+
+    @Override
+    public Optional<Event> findById(Long id) {
+        return events.stream()
+                .filter(event -> id.equals(event.getId()))
+                .findFirst();
     }
 
     private void initData() {
