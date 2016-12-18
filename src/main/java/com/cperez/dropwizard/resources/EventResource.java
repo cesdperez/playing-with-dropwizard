@@ -19,5 +19,9 @@ public interface EventResource {
     Event getEvent(@PathParam("id") LongParam id);
 
     @POST
-    public Event addEvent(Event event);
+    Event addEvent(Event event);
+
+    @PUT
+    @Path("{id}")
+    Event updateEvent(@PathParam("id") LongParam id, Event event);
 }

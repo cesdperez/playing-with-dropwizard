@@ -11,4 +11,11 @@ public class Event {
     private String description;
     private String location;
     private Date date;
+
+    public void updateExceptId(Event event) {
+        this.name = event.getName();
+        this.description = event.getDescription();
+        this.location = event.getLocation();
+        this.date = event.getDate();
+    }
 }

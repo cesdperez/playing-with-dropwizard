@@ -4,6 +4,7 @@ import com.cperez.dropwizard.api.Event;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.google.common.io.Resources;
+import io.dropwizard.jersey.params.LongParam;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +40,13 @@ public class DummyEventRepository implements EventRepository {
         event.setId(getNextId());
         events.add(event);
         return event;
+    }
+
+    @Override
+    public Optional<Event> update(Long id, Event newEvent) {
+        Optional<Event> oldEvent = findById(id);
+        oldEvent.ifPresent(e -> e.updateExceptId(newEvent));
+        return oldEvent;
     }
 
     private void initData() {

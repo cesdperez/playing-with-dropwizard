@@ -31,4 +31,11 @@ public class EventResourceImpl implements EventResource {
     public Event addEvent(Event event) {
         return eventRepository.save(event);
     }
+
+    @Override
+    public Event updateEvent(LongParam id, Event event) {
+        return eventRepository
+                .update(id.get(), event)
+                .orElseThrow(() -> new WebApplicationException("Event not found", 404));
+    }
 }
