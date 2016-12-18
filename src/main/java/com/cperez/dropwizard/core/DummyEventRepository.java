@@ -34,6 +34,13 @@ public class DummyEventRepository implements EventRepository {
                 .findFirst();
     }
 
+    @Override
+    public Event save(Event event) {
+        event.setId(getNextId());
+        events.add(event);
+        return event;
+    }
+
     private void initData() {
         String jsonDataSource = toString(DATA_SOURCE);
         events = parse(jsonDataSource);
@@ -59,5 +66,13 @@ public class DummyEventRepository implements EventRepository {
         } catch (IOException e) {
             throw new RuntimeException(String.format("error while parsing %s", DATA_SOURCE), e);
         }
+    }
+
+    private long getNextId() {
+        Optional<Long> maxId = events.stream()
+                .map(Event::getId)
+                .max(Long::compare);
+
+        return maxId.map(x -> x + 1).orElse(1L);
     }
 }

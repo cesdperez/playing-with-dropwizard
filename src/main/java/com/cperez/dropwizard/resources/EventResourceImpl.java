@@ -15,13 +15,20 @@ public class EventResourceImpl implements EventResource {
         this.eventRepository = eventRepository;
     }
 
+    @Override
     public List<Event> getEvents() {
         return eventRepository.findAll();
     }
 
+    @Override
     public Event getEvent(LongParam id) {
         return eventRepository
                 .findById(id.get())
                 .orElseThrow(() -> new WebApplicationException("Event not found", 404));
+    }
+
+    @Override
+    public Event addEvent(Event event) {
+        return eventRepository.save(event);
     }
 }
